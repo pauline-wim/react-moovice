@@ -9,6 +9,7 @@ class PopularBattle extends React.Component {
     super();
 
     this.state = {
+      apiLoaded: false,
       movies: [],
       currentBattle: 0,
     };
@@ -22,42 +23,51 @@ class PopularBattle extends React.Component {
       .then((res) => {
         // console.log(res.results);
         this.setState({ movies: res.results });
+        this.setState({ apiLoaded: true });
       });
   }
 
-  componentDidUpdate(_prevProps, prevState) {
-    if (prevState.currentBattle !== this.state.currentBattle) {
-      console.log(this.state.currentBattle);
-    }
-  }
+  // componentDidUpdate(_prevProps, prevState) {
+  //   if (prevState.currentBattle !== this.state.currentBattle) {
+  //     console.log(this.state.currentBattle);
+  //   }
+  // }
 
   handleClick() {
     this.setState((prevState) => ({
-      currentBattle: prevState.currentBattle + 1,
+      currentBattle: prevState.currentBattle + 2,
     }));
-    console.log(this.state.currentBattle);
+    // console.log(this.state.currentBattle);
   }
 
   render() {
+    const movie1 = this.state.movies[this.state.currentBattle];
+    const movie2 = this.state.movies[this.state.currentBattle + 1];
     return (
       <div>
         <h1>Popular Battle</h1>
-        <BattleBox>
-          {this.state.movies.map((movie, i) => {
-            if (i < 2) {
-              return (
-                <Card
-                  key={movie.id}
-                  onClick={() => this.handleClick()}
-                  image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                  title={movie.title}
-                  releaseDate={movie.release_date}
-                  description={movie.overview}
-                />
-              );
-            }
-          })}
-        </BattleBox>
+        {this.state.apiLoaded ? (
+          <BattleBox>
+            <Card
+              key={movie1.id}
+              onClick={() => this.handleClick()}
+              image={`https://image.tmdb.org/t/p/w300/${movie1.poster_path}`}
+              title={movie1.title}
+              releaseDate={movie1.release_date}
+              description={movie1.overview}
+            />
+            <Card
+              key={movie2.id}
+              onClick={() => this.handleClick()}
+              image={`https://image.tmdb.org/t/p/w300/${movie2.poster_path}`}
+              title={movie2.title}
+              releaseDate={movie2.release_date}
+              description={movie2.overview}
+            />
+          </BattleBox>
+        ) : (
+          <p>loading</p>
+        )}
       </div>
     );
   }
