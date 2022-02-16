@@ -1,4 +1,6 @@
 import React from "react";
+// Conmponents
+import Card from "../components/Card";
 
 class Popular extends React.Component {
   constructor() {
@@ -15,8 +17,8 @@ class Popular extends React.Component {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        this.setState({ movies: res });
+        console.log(res.results);
+        this.setState({ movies: res.results });
       });
   }
 
@@ -24,6 +26,17 @@ class Popular extends React.Component {
     return (
       <div>
         <h1>Popular</h1>
+        {this.state.movies.map((movie) => {
+          console.log(movie);
+          return (
+            <Card
+              image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+              title={movie.title}
+              releaseDate={movie.release_date}
+              description={movie.overview}
+            />
+          );
+        })}
       </div>
     );
   }
