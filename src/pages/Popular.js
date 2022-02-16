@@ -17,7 +17,7 @@ class Popular extends React.Component {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.results);
+        // console.log(res.results);
         this.setState({ movies: res.results });
       });
   }
@@ -27,9 +27,10 @@ class Popular extends React.Component {
       <div>
         <h1>Popular</h1>
         {this.state.movies.map((movie) => {
-          console.log(movie);
+          //   console.log(movie);
           return (
             <Card
+              key={movie.id}
               image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
               title={movie.title}
               releaseDate={movie.release_date}
