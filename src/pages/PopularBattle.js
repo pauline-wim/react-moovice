@@ -81,7 +81,7 @@ class PopularBattle extends React.Component {
     const movie2 = this.state.movies[this.state.currentBattle + 1];
     return (
       <div>
-        <h1>Popular Battle</h1>
+        <h1 style={{ textAlign: "center" }}>Popular Battle</h1>
         {this.state.apiLoaded ? (
           <BattleBox>
             <Card
@@ -118,7 +118,8 @@ class PopularBattle extends React.Component {
 
 const BattleBox = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 20px;
   /* .movieCard1 {
     display: block;
   }
