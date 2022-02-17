@@ -13,6 +13,7 @@ class PopularBattle extends React.Component {
       apiLoaded: false,
       movies: [],
       currentBattle: 0,
+      selectedMovies: [],
       favorites: localStorage.getItem("favorites"),
     };
   }
@@ -29,6 +30,10 @@ class PopularBattle extends React.Component {
   }
 
   handleClick() {
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify(this.state.selectedMovies)
+    );
     if (
       this.state.currentBattle + 2 !== this.state.movies.length &&
       this.state.currentBattle + 2 !== undefined
@@ -36,14 +41,15 @@ class PopularBattle extends React.Component {
       this.setState((prevState) => ({
         currentBattle: prevState.currentBattle + 2,
       }));
-      localStorage.setItem(
-        [this.state.currentBattle],
-        JSON.stringify(this.state.movies[this.state.currentBattle])
-      );
+      const select = this.state.selectedMovies;
+      select.push(this.state.movies[this.state.currentBattle].id);
+      this.setState({
+        selectedMovies: select,
+      });
     } else {
       const noMoreMovies = document.getElementById("noMoreMovies");
       noMoreMovies.style.display = "flex";
-      console.log(localStorage);
+      // console.log(localStorage);
       // return console.log("Done");
     }
   }
