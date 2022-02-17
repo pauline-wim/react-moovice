@@ -58,7 +58,11 @@ const Navbar = styled.nav`
     font-size: 20px;
     font-weight: 700;
     text-decoration: none;
-    color: orange;
+    color: #e0e3ff;
+  }
+  .navLinks:hover {
+    color: #e0e3ff;
+    text-shadow: #9ca0c3 1px 2px 2px;
   }
 `;
 

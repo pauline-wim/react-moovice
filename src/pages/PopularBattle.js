@@ -57,6 +57,7 @@ class PopularBattle extends React.Component {
         {this.state.apiLoaded ? (
           <BattleBox>
             <Card
+              className="movieBattle"
               key={movie1.id}
               onClick={() => this.handleClick()}
               title={movie1.title}
@@ -65,6 +66,7 @@ class PopularBattle extends React.Component {
               description={movie1.overview}
             />
             <Card
+              className="movieBattle"
               key={movie2.id}
               onClick={() => this.handleClick()}
               title={movie2.title}
@@ -88,6 +90,11 @@ const BattleBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
+  .movieBattle:hover {
+    border: 2px groove #9ca0c3;
+    box-shadow: 2px 20px 15px -7px #000000, 6px 6px 15px 12px rgba(0, 0, 0, 0);
+    transform: scale(1.02);
+  }
 `;
 
 export default PopularBattle;
