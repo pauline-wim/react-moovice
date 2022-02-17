@@ -70,7 +70,7 @@ class PopularBattle extends React.Component {
       }));
       localStorage.setItem(
         [this.state.currentBattle],
-        this.state.movies[this.state.currentBattle].title
+        JSON.stringify(this.state.movies[this.state.currentBattle])
       );
       // console.log(this.state.currentBattle);
       // console.log(this.state.movies[this.state.currentBattle].title);
