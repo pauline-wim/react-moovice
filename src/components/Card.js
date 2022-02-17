@@ -32,6 +32,7 @@ const CardElement = styled.div`
   width: 40vw;
   height: 70vh;
   padding: 20px;
+  cursor: pointer;
   .img_box {
     display: flex;
     img {
