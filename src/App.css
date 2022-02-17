@@ -1,1 +1,14 @@
-
+#noMoreMovies {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 16%;
+  left: 2%;
+  width: 95%;
+  height: 80%;
+  background-color: black;
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+}

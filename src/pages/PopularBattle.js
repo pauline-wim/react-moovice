@@ -2,6 +2,7 @@ import React from "react";
 // Components
 import Card from "../components/Card";
 // CSS
+import "../App.css";
 import styled from "styled-components";
 
 class PopularBattle extends React.Component {
@@ -29,25 +30,50 @@ class PopularBattle extends React.Component {
 
   componentDidUpdate(_prevProps, prevState) {
     if (prevState.currentBattle !== this.state.currentBattle) {
+      console.log(this.state.currentBattle);
       console.log(this.state.movies[this.state.currentBattle].title);
-      if (this.state.movies[this.state.currentBattle].title === undefined) {
-        const noMoreMovies = document.getElementById("noMoreMovies");
-        noMoreMovies.classList.remove("endList");
-        return console.log("Done");
-      }
+      // if (this.state.movies[this.state.currentBattle].title === undefined) {
+      //   const noMoreMovies = document.getElementById("noMoreMovies");
+      //   noMoreMovies.classList.remove("endList");
+      //   return console.log("Done");
+      // }
+      // if (this.state.currentBattle === 18 && Card.id === undefined) {
+      //   const noMoreMovies = document.getElementById("noMoreMovies");
+      //   // const movieCard1 = document.getElementById("card1");
+      //   // const movieCard2 = document.getElementById("card2");
+      //   // movieCard1.classList.remove("movieCard1");
+      //   // movieCard2.classList.remove("movieCard2");
+      //   noMoreMovies.classList.remove("endList");
+      //   return console.log("Done");
+      // }
+
+      // if (this.state.currentBattle + 2 === this.state.movies.length) {
+      //   const movieCard1 = document.getElementById("card1");
+      //   const movieCard2 = document.getElementById("card2");
+      //   movieCard1.classList.remove("movieCard1");
+      //   movieCard2.classList.remove("movieCard2");
+      //   const noMoreMovies = document.getElementById("noMoreMovies");
+      //   noMoreMovies.classList.remove("endList");
+      //   return console.log("Done");
+      // }
     }
   }
 
   handleClick() {
-    this.setState((prevState) => ({
-      currentBattle: prevState.currentBattle + 2,
-    }));
-    // console.log(this.state.movies[this.state.currentBattle].title);
-    // if (this.state.movies[this.state.currentBattle].title === undefined) {
-    //   const noMoreMovies = document.getElementById("noMoreMovies");
-    //   noMoreMovies.classList.remove("endList");
-    //   return console.log("Done");
-    // }
+    if (
+      this.state.currentBattle + 2 !== this.state.movies.length &&
+      this.state.currentBattle + 2 !== undefined
+    ) {
+      this.setState((prevState) => ({
+        currentBattle: prevState.currentBattle + 2,
+      }));
+      // console.log(this.state.currentBattle);
+      // console.log(this.state.movies[this.state.currentBattle].title);
+    } else {
+      const noMoreMovies = document.getElementById("noMoreMovies");
+      noMoreMovies.style.display = "flex";
+      return console.log("Done");
+    }
   }
 
   render() {
@@ -59,6 +85,8 @@ class PopularBattle extends React.Component {
         {this.state.apiLoaded ? (
           <BattleBox>
             <Card
+              // id="card1"
+              // className="movieCard1"
               key={movie1.id}
               onClick={() => this.handleClick()}
               title={movie1.title}
@@ -67,6 +95,8 @@ class PopularBattle extends React.Component {
               description={movie1.overview}
             />
             <Card
+              // id="card2"
+              // className="movieCard2"
               key={movie2.id}
               onClick={() => this.handleClick()}
               title={movie2.title}
@@ -74,13 +104,13 @@ class PopularBattle extends React.Component {
               releaseDate={movie2.release_date}
               description={movie2.overview}
             />
-            <p id="noMoreMovies" className="endList">
-              Vous avez parcouru tous les films !
-            </p>
           </BattleBox>
         ) : (
           <p>loading</p>
         )}
+        <div id="noMoreMovies">
+          <p className="endList">Vous avez parcouru tous les films !</p>
+        </div>
       </div>
     );
   }
@@ -89,9 +119,12 @@ class PopularBattle extends React.Component {
 const BattleBox = styled.div`
   display: flex;
   justify-content: space-around;
-  .endList {
-    display: none;
+  /* .movieCard1 {
+    display: block;
   }
+  .movieCard2 {
+    display: block;
+  } */
 `;
 
 export default PopularBattle;
