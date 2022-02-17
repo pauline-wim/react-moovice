@@ -26,7 +26,7 @@ class Favorites extends React.Component {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         this.setState({ movies: res });
         // this.setState((prevState) => {
         //   movies: prevState.movies + res;
@@ -65,7 +65,7 @@ class Favorites extends React.Component {
             // description={movies.overview}
           />
           {/* );
-          
+
           })} */}
           {/* {this.state.movies.map((movie) => {
           console.log(movie);
