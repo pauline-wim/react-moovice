@@ -15,9 +15,9 @@ class Card extends React.Component {
           <div className="title_box">
             <h1>{this.props.title}</h1>
             <h2>{this.props.releaseDate}</h2>
+            <p>{this.props.description}</p>
           </div>
         </div>
-        <p>{this.props.description}</p>
       </CardElement>
     );
   }
@@ -36,14 +36,17 @@ const CardElement = styled.div`
   border: 2px groove #000962;
   border-radius: 10px;
   width: 40vw;
-  height: 70vh;
+  height: 60vh;
   padding: 20px;
   color: #e0e3ff;
   cursor: pointer;
   .img_box {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     img {
-      height: 300px;
+      height: 350px;
     }
     .title_box {
       padding-left: 20px;
