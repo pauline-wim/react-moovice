@@ -13,6 +13,7 @@ class PopularBattle extends React.Component {
       apiLoaded: false,
       movies: [],
       currentBattle: 0,
+      favorites: localStorage.getItem("favorites"),
     };
   }
 
@@ -28,36 +29,36 @@ class PopularBattle extends React.Component {
       });
   }
 
-  componentDidUpdate(_prevProps, prevState) {
-    if (prevState.currentBattle !== this.state.currentBattle) {
-      console.log(this.state.currentBattle);
-      console.log(this.state.movies[this.state.currentBattle].title);
-      // if (this.state.movies[this.state.currentBattle].title === undefined) {
-      //   const noMoreMovies = document.getElementById("noMoreMovies");
-      //   noMoreMovies.classList.remove("endList");
-      //   return console.log("Done");
-      // }
-      // if (this.state.currentBattle === 18 && Card.id === undefined) {
-      //   const noMoreMovies = document.getElementById("noMoreMovies");
-      //   // const movieCard1 = document.getElementById("card1");
-      //   // const movieCard2 = document.getElementById("card2");
-      //   // movieCard1.classList.remove("movieCard1");
-      //   // movieCard2.classList.remove("movieCard2");
-      //   noMoreMovies.classList.remove("endList");
-      //   return console.log("Done");
-      // }
+  // componentDidUpdate(_prevProps, prevState) {
+  //   if (prevState.currentBattle !== this.state.currentBattle) {
+  //     console.log(this.state.currentBattle);
+  //     console.log(this.state.movies[this.state.currentBattle].title);
+  // if (this.state.movies[this.state.currentBattle].title === undefined) {
+  //   const noMoreMovies = document.getElementById("noMoreMovies");
+  //   noMoreMovies.classList.remove("endList");
+  //   return console.log("Done");
+  // }
+  // if (this.state.currentBattle === 18 && Card.id === undefined) {
+  //   const noMoreMovies = document.getElementById("noMoreMovies");
+  //   // const movieCard1 = document.getElementById("card1");
+  //   // const movieCard2 = document.getElementById("card2");
+  //   // movieCard1.classList.remove("movieCard1");
+  //   // movieCard2.classList.remove("movieCard2");
+  //   noMoreMovies.classList.remove("endList");
+  //   return console.log("Done");
+  // }
 
-      // if (this.state.currentBattle + 2 === this.state.movies.length) {
-      //   const movieCard1 = document.getElementById("card1");
-      //   const movieCard2 = document.getElementById("card2");
-      //   movieCard1.classList.remove("movieCard1");
-      //   movieCard2.classList.remove("movieCard2");
-      //   const noMoreMovies = document.getElementById("noMoreMovies");
-      //   noMoreMovies.classList.remove("endList");
-      //   return console.log("Done");
-      // }
-    }
-  }
+  // if (this.state.currentBattle + 2 === this.state.movies.length) {
+  //   const movieCard1 = document.getElementById("card1");
+  //   const movieCard2 = document.getElementById("card2");
+  //   movieCard1.classList.remove("movieCard1");
+  //   movieCard2.classList.remove("movieCard2");
+  //   const noMoreMovies = document.getElementById("noMoreMovies");
+  //   noMoreMovies.classList.remove("endList");
+  //   return console.log("Done");
+  // }
+  //   }
+  // }
 
   handleClick() {
     if (
@@ -67,11 +68,16 @@ class PopularBattle extends React.Component {
       this.setState((prevState) => ({
         currentBattle: prevState.currentBattle + 2,
       }));
+      localStorage.setItem(
+        [this.state.currentBattle],
+        this.state.movies[this.state.currentBattle].title
+      );
       // console.log(this.state.currentBattle);
       // console.log(this.state.movies[this.state.currentBattle].title);
     } else {
       const noMoreMovies = document.getElementById("noMoreMovies");
       noMoreMovies.style.display = "flex";
+      console.log(localStorage);
       return console.log("Done");
     }
   }
