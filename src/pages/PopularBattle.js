@@ -27,17 +27,27 @@ class PopularBattle extends React.Component {
       });
   }
 
-  // componentDidUpdate(_prevProps, prevState) {
-  //   if (prevState.currentBattle !== this.state.currentBattle) {
-  //     console.log(this.state.currentBattle);
-  //   }
-  // }
+  componentDidUpdate(_prevProps, prevState) {
+    if (prevState.currentBattle !== this.state.currentBattle) {
+      console.log(this.state.movies[this.state.currentBattle].title);
+      if (this.state.movies[this.state.currentBattle].title === undefined) {
+        const noMoreMovies = document.getElementById("noMoreMovies");
+        noMoreMovies.classList.remove("endList");
+        return console.log("Done");
+      }
+    }
+  }
 
   handleClick() {
     this.setState((prevState) => ({
       currentBattle: prevState.currentBattle + 2,
     }));
-    // console.log(this.state.currentBattle);
+    // console.log(this.state.movies[this.state.currentBattle].title);
+    // if (this.state.movies[this.state.currentBattle].title === undefined) {
+    //   const noMoreMovies = document.getElementById("noMoreMovies");
+    //   noMoreMovies.classList.remove("endList");
+    //   return console.log("Done");
+    // }
   }
 
   render() {
@@ -51,19 +61,22 @@ class PopularBattle extends React.Component {
             <Card
               key={movie1.id}
               onClick={() => this.handleClick()}
-              image={`https://image.tmdb.org/t/p/w300/${movie1.poster_path}`}
               title={movie1.title}
+              image={`https://image.tmdb.org/t/p/w300/${movie1.poster_path}`}
               releaseDate={movie1.release_date}
               description={movie1.overview}
             />
             <Card
               key={movie2.id}
               onClick={() => this.handleClick()}
-              image={`https://image.tmdb.org/t/p/w300/${movie2.poster_path}`}
               title={movie2.title}
+              image={`https://image.tmdb.org/t/p/w300/${movie2.poster_path}`}
               releaseDate={movie2.release_date}
               description={movie2.overview}
             />
+            <p id="noMoreMovies" className="endList">
+              Vous avez parcouru tous les films !
+            </p>
           </BattleBox>
         ) : (
           <p>loading</p>
@@ -76,6 +89,9 @@ class PopularBattle extends React.Component {
 const BattleBox = styled.div`
   display: flex;
   justify-content: space-around;
+  .endList {
+    display: none;
+  }
 `;
 
 export default PopularBattle;
