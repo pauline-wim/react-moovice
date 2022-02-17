@@ -1,6 +1,8 @@
 import React from "react";
 // Conmponents
 import Card from "../components/Card";
+// CSS
+import styled from "styled-components";
 
 class Popular extends React.Component {
   constructor() {
@@ -24,23 +26,37 @@ class Popular extends React.Component {
 
   render() {
     return (
-      <div>
+      <PopularBox>
         <h1>Popular</h1>
-        {this.state.movies.map((movie) => {
-          //   console.log(movie);
-          return (
-            <Card
-              key={movie.id}
-              image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-              title={movie.title}
-              releaseDate={movie.release_date}
-              description={movie.overview}
-            />
-          );
-        })}
-      </div>
+        <CardBox>
+          {this.state.movies.map((movie) => {
+            //   console.log(movie);
+            return (
+              <Card
+                key={movie.id}
+                image={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                title={movie.title}
+                releaseDate={movie.release_date}
+                description={movie.overview}
+              />
+            );
+          })}
+        </CardBox>
+      </PopularBox>
     );
   }
 }
+
+const PopularBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CardBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+`;
 
 export default Popular;
