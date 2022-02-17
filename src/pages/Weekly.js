@@ -7,9 +7,9 @@ import styled from "styled-components";
 
 // Dates
 const today = moment().format("YYYY-MM-DD");
-console.log(today);
+// console.log(today);
 const last_week = moment().add(-7, "days").format("YYYY-MM-DD");
-console.log(last_week);
+// console.log(last_week);
 
 class Weekly extends React.Component {
   constructor() {
